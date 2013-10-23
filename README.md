@@ -8,9 +8,9 @@ This program was developed to not only act a bootstrap project, but to educate m
 when creating GUI software, as well as to expose them to the Google Guice &amp; Guava libraries. Now,
 I'm sharing it with the world as well!
 
+* http://www.oracle.com/technetwork/java/javafx/overview/index.html
 * http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter
 * http://en.wikipedia.org/wiki/Command_pattern
-* https://code.google.com/p/google-guice/wiki/Motivation?tm=6
 * https://code.google.com/p/google-guice/wiki/Motivation?tm=6
 * https://code.google.com/p/guava-libraries/
 
