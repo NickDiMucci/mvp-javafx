@@ -31,18 +31,16 @@ public class RudeMessageServiceImpl implements MessageService {
 
 	@Override
 	public MessageResponseData sayHello(final MessageRequestData requestData) {
-		MessageResponseData responseData;
-
+		String message = null;
 		try {
 			// Performing a get on a CacheBuilder will also automatically put the value if it's not already present.
-			responseData = new MessageResponseData(rudeHelloMessages.get(requestData.name));
+			message = rudeHelloMessages.get(requestData.name);
 		} catch (ExecutionException e) {
-			e.printStackTrace();
 			// In a real app, you'll want to handle exceptions a little bit better than this.
-			responseData = new MessageResponseData("");
+			e.printStackTrace();
 		}
 
-		return responseData;
+		return new MessageResponseData(message);
 	}
 
 	@Override
