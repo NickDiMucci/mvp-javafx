@@ -4,13 +4,13 @@ mvp-javafx
 A simple concurrent JavaFX program demonstrating the MVP, IoC &amp; Command patterns. This can be used to bootstrap a
 JavaFX program.
 
-This program was developed to not only act a bootstrap project, but toeducate my fellow team members on these patterns
-when creating GUI software, as well as to expose them to the Google Guice & Guava libraries. Now,
+This program was developed to not only act a bootstrap project, but to educate my fellow team members on these patterns
+when creating GUI software, as well as to expose them to the Google Guice &amp; Guava libraries. Now,
 I'm sharing it with the world as well!
 
+* http://www.oracle.com/technetwork/java/javafx/overview/index.html
 * http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter
 * http://en.wikipedia.org/wiki/Command_pattern
-* https://code.google.com/p/google-guice/wiki/Motivation?tm=6
 * https://code.google.com/p/google-guice/wiki/Motivation?tm=6
 * https://code.google.com/p/guava-libraries/
 
