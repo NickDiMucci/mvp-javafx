@@ -49,13 +49,13 @@ public class SimpleMessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public MessageResponseData sayGoodbye(MessageRequestData requestData) {
+	public MessageResponseData sayGoodbye(final MessageRequestData requestData) {
 		// Humor me once more, saying goodbye isn't expensive (though, it's always the hardest),
 		// so we don't need a CacheBuilder.
 		return new MessageResponseData("See yea, " + requestData.name);
 	}
 
-	private String createHelloMessage(String name) throws InterruptedException {
+	private String createHelloMessage(final String name) throws InterruptedException {
 		// Again, just simulating a long running process.
 		Thread.sleep(5000);
 		return "Hey there, " + name;

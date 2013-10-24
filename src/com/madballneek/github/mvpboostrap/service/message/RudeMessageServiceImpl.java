@@ -30,7 +30,7 @@ public class RudeMessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public MessageResponseData sayHello(MessageRequestData requestData) {
+	public MessageResponseData sayHello(final MessageRequestData requestData) {
 		MessageResponseData responseData;
 
 		try {
@@ -46,13 +46,13 @@ public class RudeMessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public MessageResponseData sayGoodbye(MessageRequestData requestData) {
+	public MessageResponseData sayGoodbye(final MessageRequestData requestData) {
 		// Humor me once more, saying goodbye isn't expensive (though, it's always the hardest),
 		// so we don't need a CacheBuilder.
 		return new MessageResponseData("Don't let the door hit you, " + requestData.name);
 	}
 
-	private String createRudeHelloMessage(String name) throws InterruptedException {
+	private String createRudeHelloMessage(final String name) throws InterruptedException {
 		// Again, just simulating a long running process.
 		Thread.sleep(5000);
 		return "What the hell do you want, " + name + "?";
