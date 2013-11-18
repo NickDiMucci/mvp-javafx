@@ -28,12 +28,12 @@ public class AppController implements Presenter {
 			Injector injector = Guice.createInjector(new ConcurrentSimpleMessengerModule());
 
 			// Alternatively, if we later decide we need execute service tasks asynchronously,
-			// we simply ask to inject a AsyncSimpleMessengerModule instead.
-//			Injector injector = Guice.createInjector(new AsyncSimpleMessengerModule());
+			// we simply ask to inject a BlockingSimpleMessengerModule instead.
+//			Injector injector = Guice.createInjector(new BlockingSimpleMessengerModule());
 
 			// Or let's say we're having a bad case of the Mondays,
-			// and we want to use a AsyncTaskManager and a RudeMessageService?
-//			Injector injector = Guice.createInjector(new AsyncRudeMessengerModule());
+			// and we want to use a BlockingTaskManager and a RudeMessageService?
+//			Injector injector = Guice.createInjector(new BlockingRudeMessengerModule());
 
 			// Regardless of the type of module we use, the MessagePresenter cares little,
 			// as long as its dependencies are fulfilled.

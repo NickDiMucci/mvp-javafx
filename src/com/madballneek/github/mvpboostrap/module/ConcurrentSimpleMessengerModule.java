@@ -12,7 +12,7 @@ import com.madballneek.github.mvpboostrap.view.ExampleView;
 
 /**
  * A Google Guice module that defines the required dependencies needed when we create a MessagePresenterImpl.
- * This particular module will inject a <code>ConcurrentTaskManager</code>.
+ * This particular module will inject a {@link ConcurrentTaskManager}.
  * For each Interface required, we define the concrete class to bind it to.
  * Please see https://code.google.com/p/google-guice/wiki/GettingStarted for more info on Guice and Dependency Injection.
  */

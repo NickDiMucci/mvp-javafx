@@ -4,7 +4,6 @@ import com.google.common.eventbus.EventBus;
 import com.madballneek.github.mvpboostrap.model.request.MessageRequestData;
 import com.madballneek.github.mvpboostrap.model.response.MessageResponseData;
 import com.madballneek.github.mvpboostrap.model.response.ResponseData;
-import com.madballneek.github.mvpboostrap.service.TaskManager;
 import com.madballneek.github.mvpboostrap.service.message.MessageService;
 
 /**
@@ -17,8 +16,8 @@ public class SayGoodByeTask extends ServiceTask {
 	private MessageService messageService;
 	private MessageRequestData requestData;
 
-	public SayGoodByeTask(TaskManager taskManager, EventBus eventBus, MessageService messageService, MessageRequestData requestData) {
-		super(taskManager);
+	public SayGoodByeTask(EventBus eventBus, MessageService messageService, MessageRequestData requestData) {
+		super();
 		this.eventBus = eventBus;
 		this.messageService = messageService;
 		this.requestData = requestData;
@@ -27,11 +26,6 @@ public class SayGoodByeTask extends ServiceTask {
 	@Override
 	protected ResponseData call() throws Exception {
 		return messageService.sayGoodbye(requestData);
-	}
-
-	@Override
-	public void start() {
-		new Thread(this).start();
 	}
 
 	@Override

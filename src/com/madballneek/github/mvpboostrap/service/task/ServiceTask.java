@@ -1,45 +1,35 @@
 package com.madballneek.github.mvpboostrap.service.task;
 
 import com.madballneek.github.mvpboostrap.model.response.ResponseData;
-import com.madballneek.github.mvpboostrap.service.TaskManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
 
+/**
+ * A wrapper for a {@link Task}, providing methods to perform any pre and/or post service call operations,
+ * as well as allowing you to define <code>onSuccess</code> and <code>onFailure</code> methods.
+ */
 public abstract class ServiceTask extends Task<ResponseData> {
-	private TaskManager taskManager;
-
-	public ServiceTask(TaskManager taskManager) {
-		this.taskManager = taskManager;
+	public ServiceTask() {
 	}
 
 	/**
-	 * Implementors of this method should instantiate a new thread and pass it the <code>serviceTask</code> to run.
-	 */
-	public abstract void start();
-
-	/**
-	 * This method is called once the service has responded back to the client.
-	 * Handle success and failure here.
+	 * This method is called once the service has responded back to the main thread.
 	 *
-	 * @param response the response data transfer object with information about
+	 * @param response the {@link ResponseData} object with information about
 	 *                 the status of the service call, any error messages, and the data
-	 *                 payload, if any coming back to the client.
+	 *                 payload.
 	 */
 	protected abstract void processPostServiceResponse(ResponseData response);
 
 	/**
-	 * Performs any pre-sending tasks. Will also add a state change listener to the <code>Task</code> object.
-	 * If you override this method, be sure to call <code>super</code>.
-	 * <p>
-	 * <b>NOTE: </b>Specific implementations should be sure to call this method
-	 * before performing additional custom tasks.
-	 * </p>
+	 * Performs any processing you want to occur before calling the service. Will also add a state change listener to
+	 * the {@link Task} object.
+	 * If you override this method, be sure to call <code>super</code> to attach the state change listener.
 	 */
-	public void prepareToStart() {
+	public void processPreService() {
 		// Add a ChangeListener to listen for change in state, and check if the Task was successful.
-		// http://docs.oracle.com/javafx/2/threads/jfxpub-threads.htm
 		this.stateProperty().addListener(new ChangeListener<Worker.State>() {
 
 			@Override
@@ -53,28 +43,15 @@ public abstract class ServiceTask extends Task<ResponseData> {
 		});
 	}
 
-	/**
-	 * Process any tasks that need to be handled client side, before going
-	 * to the service. Should only be called by TaskManager.
-	 *
-	 * @return boolean to indicate whether pre-server tasks have been
-	 *         successfully processed, and if we can proceed to processing
-	 *         server side tasks.
-	 */
-	public boolean processPreServiceResponse() {
-		return true;
-	}
-
-	public void onFailure(Throwable exception) {
-		// TODO: Handle task failure robustly.
+	protected void onFailure(Throwable exception) {
+		// TODO: Handle task failure gracefully.
 		exception.printStackTrace();
-		taskManager.executeNextTask();
 	}
 
-	public void onSuccess(ResponseData response) {
-		if (response.getResponseStatus() == ResponseData.ResponseStatus.SUCCESS) {
+	protected void onSuccess(ResponseData response) {
+		if (response.getResponseStatus() == ResponseData.ResponseStatus.SUCCESS ||
+				response.getResponseStatus() == ResponseData.ResponseStatus.PARTIAL) {
 			processPostServiceResponse(response);
 		}
-		taskManager.executeNextTask();
 	}
 }

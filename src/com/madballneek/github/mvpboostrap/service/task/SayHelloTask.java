@@ -4,7 +4,6 @@ import com.google.common.eventbus.EventBus;
 import com.madballneek.github.mvpboostrap.model.request.MessageRequestData;
 import com.madballneek.github.mvpboostrap.model.response.MessageResponseData;
 import com.madballneek.github.mvpboostrap.model.response.ResponseData;
-import com.madballneek.github.mvpboostrap.service.TaskManager;
 import com.madballneek.github.mvpboostrap.service.message.MessageService;
 
 /**
@@ -17,21 +16,24 @@ public class SayHelloTask extends ServiceTask {
 	private MessageService messageService;
 	private MessageRequestData requestData;
 
-	public SayHelloTask(TaskManager taskManager, EventBus eventBus, MessageService messageService, MessageRequestData requestData) {
-		super(taskManager);
+	public SayHelloTask(EventBus eventBus, MessageService messageService, MessageRequestData requestData) {
+		super();
 		this.eventBus = eventBus;
 		this.messageService = messageService;
 		this.requestData = requestData;
 	}
 
 	@Override
-	protected ResponseData call() throws Exception {
-		return messageService.sayHello(requestData);
+	public void processPreService() {
+		super.processPreService();
+		// Perhaps there's some additional initialization you want to do before calling the service,
+		// hook into a ProgressBar to update the status, or post an event that we're about to make a call to a service?
+		// You could handle that here.
 	}
 
 	@Override
-	public void start() {
-		new Thread(this).start();
+	protected ResponseData call() throws Exception {
+		return messageService.sayHello(requestData);
 	}
 
 	@Override

@@ -62,12 +62,12 @@ public class MessagePresenterImpl implements Presenter {
 
 	public void sayHello() {
 		MessageRequestData messageRequestData = new MessageRequestData(view.getName().getText());
-		taskManager.queueNewTask(new SayHelloTask(taskManager, eventBus, messageService, messageRequestData));
+		taskManager.submitNewTask(new SayHelloTask(eventBus, messageService, messageRequestData));
 	}
 
 	public void sayGoodbye() {
 		MessageRequestData messageRequestData = new MessageRequestData(view.getName().getText());
-		taskManager.queueNewTask(new SayGoodByeTask(taskManager, eventBus, messageService, messageRequestData));
+		taskManager.submitNewTask(new SayGoodByeTask(eventBus, messageService, messageRequestData));
 	}
 
 	@Subscribe
