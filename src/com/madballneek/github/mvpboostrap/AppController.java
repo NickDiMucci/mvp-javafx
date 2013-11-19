@@ -27,8 +27,8 @@ public class AppController implements Presenter {
 			// ConcurrentSimpleMessengerModule defines the interface-to-concrete bindings.
 			Injector injector = Guice.createInjector(new ConcurrentSimpleMessengerModule());
 
-			// Alternatively, if we later decide we need execute service tasks asynchronously,
-			// we simply ask to inject a BlockingSimpleMessengerModule instead.
+			// Alternatively, if we later decide we need execute service tasks and wait for their results before
+			// continuing, we simply ask to inject a BlockingSimpleMessengerModule instead.
 //			Injector injector = Guice.createInjector(new BlockingSimpleMessengerModule());
 
 			// Or let's say we're having a bad case of the Mondays,
