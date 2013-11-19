@@ -21,7 +21,7 @@ public abstract class ServiceTask extends Task<ResponseData> {
 	 *                 the status of the service call, any error messages, and the data
 	 *                 payload.
 	 */
-	protected abstract void processPostServiceResponse(ResponseData response);
+	protected abstract void processPostService(ResponseData response);
 
 	/**
 	 * Performs any processing you want to occur before calling the service. Will also add a state change listener to
@@ -51,7 +51,7 @@ public abstract class ServiceTask extends Task<ResponseData> {
 	protected void onSuccess(ResponseData response) {
 		if (response.getResponseStatus() == ResponseData.ResponseStatus.SUCCESS ||
 				response.getResponseStatus() == ResponseData.ResponseStatus.PARTIAL) {
-			processPostServiceResponse(response);
+			processPostService(response);
 		}
 	}
 }

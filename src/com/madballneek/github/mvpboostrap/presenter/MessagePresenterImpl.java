@@ -20,7 +20,8 @@ import javafx.stage.Stage;
 
 /**
  * <code>MessagePresenter</code> implementation. Binds the view's event handlers and passes the necessary model to the
- * view as well. We also queue the <code>ServiceTask</code>s to the <code>MessageService</code> here as well.
+ * view as well. We also submit {@link com.madballneek.github.mvpboostrap.service.task.ServiceTask}s to the
+ * {@link MessageService} here as well.
  */
 public class MessagePresenterImpl implements Presenter {
 	private TaskManager taskManager;
@@ -71,7 +72,7 @@ public class MessagePresenterImpl implements Presenter {
 	}
 
 	@Subscribe
-	public void getServiceResponse(MessageResponseData messageResponseData) {
+	public void onMessageServiceResponse(MessageResponseData messageResponseData) {
 		view.getServiceResponse().setText(messageResponseData.message);
 	}
 

@@ -5,6 +5,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.madballneek.github.mvpboostrap.model.request.MessageRequestData;
 import com.madballneek.github.mvpboostrap.model.response.MessageResponseData;
+import com.madballneek.github.mvpboostrap.model.response.ResponseData;
 
 import java.util.concurrent.ExecutionException;
 
@@ -26,7 +27,6 @@ public class SimpleMessageServiceImpl implements MessageService {
 						// We are just demonstrating a long running, expensive service process.
 						// Since we are running our service tasks on background threads, this won't
 						// hang up the application at all. You may execute other tasks to this service while this one runs!
-						System.out.println("Loading cache value...");
 						return createHelloMessage(key);
 					}
 				});
@@ -35,15 +35,17 @@ public class SimpleMessageServiceImpl implements MessageService {
 	@Override
 	public MessageResponseData sayHello(final MessageRequestData requestData) {
 		String message = null;
+		MessageResponseData responseData = new MessageResponseData(message);
 		try {
 			// Performing a get on a CacheBuilder will also automatically put the value if it's not already present.
-			message = helloMessages.get(requestData.name);
+			responseData.message = helloMessages.get(requestData.name);
 		} catch (ExecutionException e) {
 			// In a real app, you'll want to handle exceptions a little bit better than this.
+			responseData.setResponseStatus(ResponseData.ResponseStatus.FAILURE);
 			e.printStackTrace();
 		}
 
-		return new MessageResponseData(message);
+		return responseData;
 	}
 
 	@Override

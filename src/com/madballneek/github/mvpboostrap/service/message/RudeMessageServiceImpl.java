@@ -23,7 +23,6 @@ public class RudeMessageServiceImpl implements MessageService {
 						// We are just demonstrating a long running, expensive service process.
 						// Since we are running our service tasks on background threads, this won't
 						// hang up the application at all. You may execute other tasks to this service while this one runs!
-						System.out.println("Loading cache value...");
 						return createRudeHelloMessage(key);
 					}
 				});

@@ -29,7 +29,7 @@ public class SayGoodByeTask extends ServiceTask {
 	}
 
 	@Override
-	protected void processPostServiceResponse(ResponseData response) {
+	protected void processPostService(ResponseData response) {
 		MessageResponseData responseData = (MessageResponseData) response;
 		eventBus.post(responseData);
 	}

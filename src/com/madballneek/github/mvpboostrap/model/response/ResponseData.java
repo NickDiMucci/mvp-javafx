@@ -14,4 +14,8 @@ public abstract class ResponseData {
 	public ResponseStatus getResponseStatus() {
 		return responseStatus;
 	}
+
+	public void setResponseStatus(ResponseStatus responseStatus) {
+		this.responseStatus = responseStatus;
+	}
 }

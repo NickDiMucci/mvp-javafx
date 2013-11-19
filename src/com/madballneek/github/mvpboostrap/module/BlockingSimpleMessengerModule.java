@@ -25,6 +25,7 @@ public class BlockingSimpleMessengerModule extends AbstractModule {
 		bind(TaskManager.class).to(BlockingTaskManager.class).in(Singleton.class);
 		bind(EventBus.class).in(Singleton.class);
 		bind(MessagePresenterImpl.View.class).to(ExampleView.class);
-		bind(MessageService.class).to(SimpleMessageServiceImpl.class);
+		bind(MessageService.class).to(SimpleMessageServiceImpl.class).in(Singleton.class);
+		;
 	}
 }
